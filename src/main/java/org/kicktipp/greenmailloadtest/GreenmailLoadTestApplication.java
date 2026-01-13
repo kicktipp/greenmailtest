@@ -2,6 +2,7 @@ package org.kicktipp.greenmailloadtest;
 
 import com.icegreen.greenmail.util.GreenMail;
 import com.icegreen.greenmail.util.ServerSetup;
+import com.sun.management.HotSpotDiagnosticMXBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -12,6 +13,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import java.io.IOException;
+import java.lang.management.ManagementFactory;
+import java.lang.management.MemoryMXBean;
 import java.net.ServerSocket;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -21,12 +24,42 @@ import java.util.stream.Stream;
 @SpringBootApplication
 public class GreenmailLoadTestApplication implements CommandLineRunner {
 
-    private static final int NUMBER_OF_THREADS = 100;
-    private static final int MAILS_PER_THREAD = 20;
+    private static int numberOfThreads = 10;
+    private static int mailsPerThread = 2;
     private static final Logger LOG = LoggerFactory.getLogger(GreenmailLoadTestApplication.class);
 
     public static void main(String[] args) {
+        parseArgs(args);
+        logMemory();
         SpringApplication.run(GreenmailLoadTestApplication.class, args).close();
+    }
+
+    private static void parseArgs(String[] args) {
+        for (String arg : args) {
+            if (arg.startsWith("numberOfThreads=")) {
+                numberOfThreads = Integer.parseInt(arg.split("=")[1]);
+            }
+            if (arg.startsWith("mailsPerThread=")) {
+                mailsPerThread = Integer.parseInt(arg.split("=")[1]);
+            }
+        }
+        LOG.info("numberOfThreads: {}", numberOfThreads);
+        LOG.info("mailsPerThread: {}", mailsPerThread);
+    }
+
+    private static void logMemory() {
+        int mb = 1024 * 1024;
+        MemoryMXBean memoryBean = ManagementFactory.getMemoryMXBean();
+        long xmx = memoryBean.getHeapMemoryUsage().getMax() / mb;
+        long xms = memoryBean.getHeapMemoryUsage().getInit() / mb;
+
+        LOG.info("Initial Memory (xms) : {} mb", xms);
+        LOG.info("Max Memory (xmx) : {} mb", xmx);
+        final HotSpotDiagnosticMXBean hsdiag = ManagementFactory.getPlatformMXBean(HotSpotDiagnosticMXBean.class);
+        if (hsdiag != null) {
+            var value = Long.parseLong(hsdiag.getVMOption("MaxDirectMemorySize").getValue()) / mb;
+            LOG.info("MaxDirectMemorySize : {} mb", value);
+        }
     }
 
     @Bean(destroyMethod = "stop")
@@ -64,17 +97,17 @@ public class GreenmailLoadTestApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         LOG.info("EXECUTING : command line runner");
-        var readyThreadCounter = new CountDownLatch(NUMBER_OF_THREADS);
+        var readyThreadCounter = new CountDownLatch(numberOfThreads);
         var callingThreadBlocker = new CountDownLatch(1);
-        var completedThreadCounter = new CountDownLatch(NUMBER_OF_THREADS);
+        var completedThreadCounter = new CountDownLatch(numberOfThreads);
         final AtomicInteger i = new AtomicInteger(0);
         List<Thread> workers = Stream
                 .generate(() -> {
-                    var t = new Thread(new MailSenderWorker(readyThreadCounter, callingThreadBlocker, completedThreadCounter, javaMailSender(), MAILS_PER_THREAD));
+                    var t = new Thread(new MailSenderWorker(readyThreadCounter, callingThreadBlocker, completedThreadCounter, javaMailSender(), mailsPerThread));
                     t.setName("Worker-" + i.getAndIncrement());
                     return t;
                 })
-                .limit(NUMBER_OF_THREADS)
+                .limit(numberOfThreads)
                 .toList();
         workers.forEach(Thread::start);
         readyThreadCounter.await();
