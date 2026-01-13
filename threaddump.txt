@@ -1,0 +1,240 @@
+2026-01-13 18:22:34
+Full thread dump OpenJDK 64-Bit Server VM (17.0.17+10-Ubuntu-124.04 mixed mode, sharing):
+
+Threads class SMR info:
+_java_thread_list=0x000076d57c001c50, length=17, elements={
+0x000076d6480187a0, 0x000076d6481f6ea0, 0x000076d6481f8290, 0x000076d6481fd740,
+0x000076d6481feb00, 0x000076d6481fff20, 0x000076d648201960, 0x000076d648202ea0,
+0x000076d648204320, 0x000076d64820b960, 0x000076d64820ef20, 0x000076d6482ce800,
+0x000076d648be3910, 0x000076d648be4370, 0x000076d648c93550, 0x000076d648cce450,
+0x000076d57c0016e0
+}
+
+"main" #1 prio=5 os_prio=0 cpu=637,81ms elapsed=26,71s tid=0x000076d6480187a0 nid=0x671f5 waiting on condition  [0x000076d64ebfd000]
+   java.lang.Thread.State: WAITING (parking)
+	at jdk.internal.misc.Unsafe.park(java.base@17.0.17/Native Method)
+	- parking to wait for  <0x00000000f60000b0> (a java.util.concurrent.CountDownLatch$Sync)
+	at java.util.concurrent.locks.LockSupport.park(java.base@17.0.17/LockSupport.java:211)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire(java.base@17.0.17/AbstractQueuedSynchronizer.java:715)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer.acquireSharedInterruptibly(java.base@17.0.17/AbstractQueuedSynchronizer.java:1047)
+	at java.util.concurrent.CountDownLatch.await(java.base@17.0.17/CountDownLatch.java:230)
+	at org.kicktipp.greenmailloadtest.GreenmailLoadTestApplication.run(GreenmailLoadTestApplication.java:118)
+	at org.springframework.boot.SpringApplication.lambda$callRunner$5(SpringApplication.java:788)
+	at org.springframework.boot.SpringApplication$$Lambda$575/0x000076d58c241ba8.acceptWithException(Unknown Source)
+	at org.springframework.util.function.ThrowingConsumer$1.acceptWithException(ThrowingConsumer.java:82)
+	at org.springframework.util.function.ThrowingConsumer.accept(ThrowingConsumer.java:60)
+	at org.springframework.util.function.ThrowingConsumer$1.accept(ThrowingConsumer.java:86)
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:796)
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:787)
+	at org.springframework.boot.SpringApplication.lambda$callRunners$3(SpringApplication.java:772)
+	at org.springframework.boot.SpringApplication$$Lambda$574/0x000076d58c241570.accept(Unknown Source)
+	at java.util.stream.ForEachOps$ForEachOp$OfRef.accept(java.base@17.0.17/ForEachOps.java:183)
+	at java.util.stream.SortedOps$SizedRefSortingSink.end(java.base@17.0.17/SortedOps.java:357)
+	at java.util.stream.AbstractPipeline.copyInto(java.base@17.0.17/AbstractPipeline.java:510)
+	at java.util.stream.AbstractPipeline.wrapAndCopyInto(java.base@17.0.17/AbstractPipeline.java:499)
+	at java.util.stream.ForEachOps$ForEachOp.evaluateSequential(java.base@17.0.17/ForEachOps.java:150)
+	at java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(java.base@17.0.17/ForEachOps.java:173)
+	at java.util.stream.AbstractPipeline.evaluate(java.base@17.0.17/AbstractPipeline.java:234)
+	at java.util.stream.ReferencePipeline.forEach(java.base@17.0.17/ReferencePipeline.java:596)
+	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:772)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:325)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at org.kicktipp.greenmailloadtest.GreenmailLoadTestApplication.main(GreenmailLoadTestApplication.java:34)
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(java.base@17.0.17/Native Method)
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(java.base@17.0.17/NativeMethodAccessorImpl.java:77)
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(java.base@17.0.17/DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(java.base@17.0.17/Method.java:569)
+	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:106)
+	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:64)
+	at org.springframework.boot.loader.launch.JarLauncher.main(JarLauncher.java:40)
+
+"Reference Handler" #2 daemon prio=10 os_prio=0 cpu=1,89ms elapsed=26,69s tid=0x000076d6481f6ea0 nid=0x671fc waiting on condition  [0x000076d5e9a3b000]
+   java.lang.Thread.State: RUNNABLE
+	at java.lang.ref.Reference.waitForReferencePendingList(java.base@17.0.17/Native Method)
+	at java.lang.ref.Reference.processPendingReferences(java.base@17.0.17/Reference.java:253)
+	at java.lang.ref.Reference$ReferenceHandler.run(java.base@17.0.17/Reference.java:215)
+
+"Finalizer" #3 daemon prio=8 os_prio=0 cpu=0,40ms elapsed=26,69s tid=0x000076d6481f8290 nid=0x671fd in Object.wait()  [0x000076d5e993b000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait(java.base@17.0.17/Native Method)
+	- waiting on <0x00000000f60bc1a0> (a java.lang.ref.ReferenceQueue$Lock)
+	at java.lang.ref.ReferenceQueue.remove(java.base@17.0.17/ReferenceQueue.java:155)
+	- locked <0x00000000f60bc1a0> (a java.lang.ref.ReferenceQueue$Lock)
+	at java.lang.ref.ReferenceQueue.remove(java.base@17.0.17/ReferenceQueue.java:176)
+	at java.lang.ref.Finalizer$FinalizerThread.run(java.base@17.0.17/Finalizer.java:172)
+
+"Signal Dispatcher" #4 daemon prio=9 os_prio=0 cpu=0,20ms elapsed=26,69s tid=0x000076d6481fd740 nid=0x671fe waiting on condition  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Service Thread" #5 daemon prio=9 os_prio=0 cpu=3,12ms elapsed=26,69s tid=0x000076d6481feb00 nid=0x671ff runnable  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Monitor Deflation Thread" #6 daemon prio=9 os_prio=0 cpu=5,79ms elapsed=26,69s tid=0x000076d6481fff20 nid=0x67200 runnable  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"C2 CompilerThread0" #7 daemon prio=9 os_prio=0 cpu=485,75ms elapsed=26,69s tid=0x000076d648201960 nid=0x67201 waiting on condition  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+   No compile task
+
+"C1 CompilerThread0" #15 daemon prio=9 os_prio=0 cpu=226,16ms elapsed=26,69s tid=0x000076d648202ea0 nid=0x67202 waiting on condition  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+   No compile task
+
+"Sweeper thread" #19 daemon prio=9 os_prio=0 cpu=2,27ms elapsed=26,69s tid=0x000076d648204320 nid=0x67203 runnable  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Notification Thread" #20 daemon prio=9 os_prio=0 cpu=0,03ms elapsed=26,69s tid=0x000076d64820b960 nid=0x67204 runnable  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Common-Cleaner" #21 daemon prio=8 os_prio=0 cpu=0,69ms elapsed=26,69s tid=0x000076d64820ef20 nid=0x67206 in Object.wait()  [0x000076d5e8bfd000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(java.base@17.0.17/Native Method)
+	- waiting on <0x00000000f60335e0> (a java.lang.ref.ReferenceQueue$Lock)
+	at java.lang.ref.ReferenceQueue.remove(java.base@17.0.17/ReferenceQueue.java:155)
+	- locked <0x00000000f60335e0> (a java.lang.ref.ReferenceQueue$Lock)
+	at jdk.internal.ref.CleanerImpl.run(java.base@17.0.17/CleanerImpl.java:140)
+	at java.lang.Thread.run(java.base@17.0.17/Thread.java:840)
+	at jdk.internal.misc.InnocuousThread.run(java.base@17.0.17/InnocuousThread.java:162)
+
+"Cleaner-0" #22 daemon prio=8 os_prio=0 cpu=1,98ms elapsed=26,66s tid=0x000076d6482ce800 nid=0x67208 in Object.wait()  [0x000076d5e89fd000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(java.base@17.0.17/Native Method)
+	- waiting on <0x00000000f6044758> (a java.lang.ref.ReferenceQueue$Lock)
+	at java.lang.ref.ReferenceQueue.remove(java.base@17.0.17/ReferenceQueue.java:155)
+	- locked <0x00000000f6044758> (a java.lang.ref.ReferenceQueue$Lock)
+	at jdk.internal.ref.CleanerImpl.run(java.base@17.0.17/CleanerImpl.java:140)
+	at java.lang.Thread.run(java.base@17.0.17/Thread.java:840)
+	at jdk.internal.misc.InnocuousThread.run(java.base@17.0.17/InnocuousThread.java:162)
+
+"imap:127.0.0.1:42407" #30 prio=5 os_prio=0 cpu=0,63ms elapsed=26,16s tid=0x000076d648be3910 nid=0x67210 runnable  [0x000076d5e83fd000]
+   java.lang.Thread.State: RUNNABLE
+	at sun.nio.ch.Net.accept(java.base@17.0.17/Native Method)
+	at sun.nio.ch.NioSocketImpl.accept(java.base@17.0.17/NioSocketImpl.java:760)
+	at java.net.ServerSocket.implAccept(java.base@17.0.17/ServerSocket.java:675)
+	at java.net.ServerSocket.platformImplAccept(java.base@17.0.17/ServerSocket.java:641)
+	at java.net.ServerSocket.implAccept(java.base@17.0.17/ServerSocket.java:617)
+	at java.net.ServerSocket.implAccept(java.base@17.0.17/ServerSocket.java:574)
+	at java.net.ServerSocket.accept(java.base@17.0.17/ServerSocket.java:532)
+	at com.icegreen.greenmail.server.AbstractServer.run(AbstractServer.java:110)
+
+"smtp:127.0.0.1:46877" #29 prio=5 os_prio=0 cpu=21,03ms elapsed=26,16s tid=0x000076d648be4370 nid=0x67211 runnable  [0x000076d5e82fd000]
+   java.lang.Thread.State: RUNNABLE
+	at sun.nio.ch.Net.accept(java.base@17.0.17/Native Method)
+	at sun.nio.ch.NioSocketImpl.accept(java.base@17.0.17/NioSocketImpl.java:760)
+	at java.net.ServerSocket.implAccept(java.base@17.0.17/ServerSocket.java:675)
+	at java.net.ServerSocket.platformImplAccept(java.base@17.0.17/ServerSocket.java:641)
+	at java.net.ServerSocket.implAccept(java.base@17.0.17/ServerSocket.java:617)
+	at java.net.ServerSocket.implAccept(java.base@17.0.17/ServerSocket.java:574)
+	at java.net.ServerSocket.accept(java.base@17.0.17/ServerSocket.java:532)
+	at com.icegreen.greenmail.server.AbstractServer.run(AbstractServer.java:110)
+
+"Worker-85" #116 prio=5 os_prio=0 cpu=0,62ms elapsed=26,07s tid=0x000076d648c93550 nid=0x67278 runnable  [0x000076d3f69fd000]
+   java.lang.Thread.State: RUNNABLE
+	at sun.nio.ch.SocketDispatcher.read0(java.base@17.0.17/Native Method)
+	at sun.nio.ch.SocketDispatcher.read(java.base@17.0.17/SocketDispatcher.java:47)
+	at sun.nio.ch.NioSocketImpl.tryRead(java.base@17.0.17/NioSocketImpl.java:266)
+	at sun.nio.ch.NioSocketImpl.implRead(java.base@17.0.17/NioSocketImpl.java:317)
+	at sun.nio.ch.NioSocketImpl.read(java.base@17.0.17/NioSocketImpl.java:355)
+	at sun.nio.ch.NioSocketImpl$1.read(java.base@17.0.17/NioSocketImpl.java:808)
+	at java.net.Socket$SocketInputStream.read(java.base@17.0.17/Socket.java:966)
+	at org.eclipse.angus.mail.util.TraceInputStream.read(TraceInputStream.java:107)
+	at java.io.BufferedInputStream.fill(java.base@17.0.17/BufferedInputStream.java:244)
+	at java.io.BufferedInputStream.read(java.base@17.0.17/BufferedInputStream.java:263)
+	- locked <0x00000000f6057f58> (a java.io.BufferedInputStream)
+	at org.eclipse.angus.mail.util.LineInputStream.readLine(LineInputStream.java:104)
+	at org.eclipse.angus.mail.smtp.SMTPTransport.readServerResponse(SMTPTransport.java:2500)
+	at org.eclipse.angus.mail.smtp.SMTPTransport.openServer(SMTPTransport.java:2205)
+	at org.eclipse.angus.mail.smtp.SMTPTransport.protocolConnect(SMTPTransport.java:729)
+	- locked <0x00000000f6058030> (a org.eclipse.angus.mail.smtp.SMTPTransport)
+	at jakarta.mail.Service.connect(Service.java:345)
+	- locked <0x00000000f6058030> (a org.eclipse.angus.mail.smtp.SMTPTransport)
+	at org.springframework.mail.javamail.JavaMailSenderImpl.connectTransport(JavaMailSenderImpl.java:480)
+	at org.springframework.mail.javamail.JavaMailSenderImpl.doSend(JavaMailSenderImpl.java:399)
+	at org.springframework.mail.javamail.JavaMailSenderImpl.send(JavaMailSenderImpl.java:350)
+	at org.springframework.mail.javamail.JavaMailSender.send(JavaMailSender.java:101)
+	at org.kicktipp.greenmailloadtest.MailSenderWorker.send(MailSenderWorker.java:65)
+	at org.kicktipp.greenmailloadtest.MailSenderWorker.run(MailSenderWorker.java:41)
+	at java.lang.Thread.run(java.base@17.0.17/Thread.java:840)
+
+"Worker-132" #163 prio=5 os_prio=0 cpu=0,70ms elapsed=26,06s tid=0x000076d648cce450 nid=0x672a7 runnable  [0x000076d2f3afd000]
+   java.lang.Thread.State: RUNNABLE
+	at sun.nio.ch.SocketDispatcher.read0(java.base@17.0.17/Native Method)
+	at sun.nio.ch.SocketDispatcher.read(java.base@17.0.17/SocketDispatcher.java:47)
+	at sun.nio.ch.NioSocketImpl.tryRead(java.base@17.0.17/NioSocketImpl.java:266)
+	at sun.nio.ch.NioSocketImpl.implRead(java.base@17.0.17/NioSocketImpl.java:317)
+	at sun.nio.ch.NioSocketImpl.read(java.base@17.0.17/NioSocketImpl.java:355)
+	at sun.nio.ch.NioSocketImpl$1.read(java.base@17.0.17/NioSocketImpl.java:808)
+	at java.net.Socket$SocketInputStream.read(java.base@17.0.17/Socket.java:966)
+	at org.eclipse.angus.mail.util.TraceInputStream.read(TraceInputStream.java:107)
+	at java.io.BufferedInputStream.fill(java.base@17.0.17/BufferedInputStream.java:244)
+	at java.io.BufferedInputStream.read(java.base@17.0.17/BufferedInputStream.java:263)
+	- locked <0x00000000f6098ba8> (a java.io.BufferedInputStream)
+	at org.eclipse.angus.mail.util.LineInputStream.readLine(LineInputStream.java:104)
+	at org.eclipse.angus.mail.smtp.SMTPTransport.readServerResponse(SMTPTransport.java:2500)
+	at org.eclipse.angus.mail.smtp.SMTPTransport.openServer(SMTPTransport.java:2205)
+	at org.eclipse.angus.mail.smtp.SMTPTransport.protocolConnect(SMTPTransport.java:729)
+	- locked <0x00000000f6098c80> (a org.eclipse.angus.mail.smtp.SMTPTransport)
+	at jakarta.mail.Service.connect(Service.java:345)
+	- locked <0x00000000f6098c80> (a org.eclipse.angus.mail.smtp.SMTPTransport)
+	at org.springframework.mail.javamail.JavaMailSenderImpl.connectTransport(JavaMailSenderImpl.java:480)
+	at org.springframework.mail.javamail.JavaMailSenderImpl.doSend(JavaMailSenderImpl.java:399)
+	at org.springframework.mail.javamail.JavaMailSenderImpl.send(JavaMailSenderImpl.java:350)
+	at org.springframework.mail.javamail.JavaMailSender.send(JavaMailSender.java:101)
+	at org.kicktipp.greenmailloadtest.MailSenderWorker.send(MailSenderWorker.java:65)
+	at org.kicktipp.greenmailloadtest.MailSenderWorker.run(MailSenderWorker.java:41)
+	at java.lang.Thread.run(java.base@17.0.17/Thread.java:840)
+
+"Attach Listener" #429 daemon prio=9 os_prio=0 cpu=0,48ms elapsed=7,19s tid=0x000076d57c0016e0 nid=0x673f7 waiting on condition  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"GC Thread#17" os_prio=0 cpu=10,40ms elapsed=26,15s tid=0x000076d5d0012f00 nid=0x67222 runnable  
+
+"GC Thread#16" os_prio=0 cpu=10,59ms elapsed=26,15s tid=0x000076d5d0012470 nid=0x67221 runnable  
+
+"GC Thread#15" os_prio=0 cpu=10,35ms elapsed=26,15s tid=0x000076d5d00119e0 nid=0x67220 runnable  
+
+"GC Thread#14" os_prio=0 cpu=10,44ms elapsed=26,15s tid=0x000076d5d0010f50 nid=0x6721f runnable  
+
+"GC Thread#13" os_prio=0 cpu=10,65ms elapsed=26,15s tid=0x000076d5d00104c0 nid=0x6721e runnable  
+
+"GC Thread#12" os_prio=0 cpu=10,10ms elapsed=26,15s tid=0x000076d5d000fa30 nid=0x6721d runnable  
+
+"GC Thread#11" os_prio=0 cpu=10,28ms elapsed=26,15s tid=0x000076d5d000efa0 nid=0x6721c runnable  
+
+"GC Thread#10" os_prio=0 cpu=10,32ms elapsed=26,15s tid=0x000076d5d000e510 nid=0x6721b runnable  
+
+"GC Thread#9" os_prio=0 cpu=10,67ms elapsed=26,15s tid=0x000076d5d000da80 nid=0x6721a runnable  
+
+"GC Thread#8" os_prio=0 cpu=10,34ms elapsed=26,15s tid=0x000076d5d000d030 nid=0x67219 runnable  
+
+"GC Thread#7" os_prio=0 cpu=10,35ms elapsed=26,15s tid=0x000076d5d000c5e0 nid=0x67218 runnable  
+
+"GC Thread#6" os_prio=0 cpu=10,48ms elapsed=26,15s tid=0x000076d5d000bb90 nid=0x67217 runnable  
+
+"GC Thread#5" os_prio=0 cpu=10,41ms elapsed=26,15s tid=0x000076d5d000b140 nid=0x67216 runnable  
+
+"GC Thread#4" os_prio=0 cpu=10,81ms elapsed=26,15s tid=0x000076d5d000a720 nid=0x67215 runnable  
+
+"GC Thread#3" os_prio=0 cpu=10,30ms elapsed=26,15s tid=0x000076d5d0009d00 nid=0x67214 runnable  
+
+"GC Thread#2" os_prio=0 cpu=10,59ms elapsed=26,15s tid=0x000076d5d00092e0 nid=0x67213 runnable  
+
+"GC Thread#1" os_prio=0 cpu=10,31ms elapsed=26,15s tid=0x000076d5d00088c0 nid=0x67212 runnable  
+
+"VM Periodic Task Thread" os_prio=0 cpu=24,23ms elapsed=26,69s tid=0x000076d64820d2b0 nid=0x67205 waiting on condition  
+
+"VM Thread" os_prio=0 cpu=7,37ms elapsed=26,69s tid=0x000076d6481f2c20 nid=0x671fb runnable  
+
+"G1 Service" os_prio=0 cpu=7,87ms elapsed=26,70s tid=0x000076d6481c0400 nid=0x671fa runnable  
+
+"G1 Refine#0" os_prio=0 cpu=0,14ms elapsed=26,70s tid=0x000076d6481bf4f0 nid=0x671f9 runnable  
+
+"G1 Conc#0" os_prio=0 cpu=0,11ms elapsed=26,71s tid=0x000076d648060770 nid=0x671f8 runnable  
+
+"G1 Main Marker" os_prio=0 cpu=0,21ms elapsed=26,71s tid=0x000076d64805f7e0 nid=0x671f7 runnable  
+
+"GC Thread#0" os_prio=0 cpu=11,13ms elapsed=26,71s tid=0x000076d64804f1b0 nid=0x671f6 runnable  
+
+JNI global refs: 31, weak refs: 0
+

@@ -19,4 +19,5 @@ java -jar build/libs/greenmailtest-0.0.1-SNAPSHOT.jar numberOfThreads=150 mailsP
 ```
 
 
+
  
